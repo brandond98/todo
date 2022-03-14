@@ -3,10 +3,9 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 30,
-    marginTop: 20,
   },
   header: {
-    fontSize: 30,
+    fontSize: 25,
     color: '#4f4f4f',
   },
 
