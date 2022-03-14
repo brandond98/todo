@@ -29,6 +29,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 
+  button: {
+    backgroundColor: '#9FB6B1',
+    paddingVertical: 5,
+    borderRadius: 5,
+    marginTop: 50,
+  },
+
   todoItem: {
     padding: 15,
     borderColor: 'black',
