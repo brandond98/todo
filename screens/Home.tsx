@@ -1,3 +1,5 @@
+import { TodoList } from '../components';
+
 export const Home = () => {
-  return null;
+  return <TodoList />;
 };
