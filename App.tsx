@@ -1,5 +1,16 @@
-import { Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { RootStackParams } from './types/RootStackParams';
+import { Home, Form } from './screens';
 
 export default function App() {
-  return <Text>Open up App.tsx to start working on your app!</Text>;
+  const RootStack = createStackNavigator<RootStackParams>();
+  return (
+    <NavigationContainer>
+      <RootStack.Navigator>
+        <RootStack.Screen name="home" component={Home} />
+        <RootStack.Screen name="form" component={Form} />
+      </RootStack.Navigator>
+    </NavigationContainer>
+  );
 }
