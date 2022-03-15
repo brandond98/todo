@@ -1,10 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useState } from 'react';
 import { Provider as StoreProvider } from 'react-redux';
+import { store } from './Redux/store';
 import { Form, Home } from './screens';
 import { RootStackParams } from './types/RootStackParams';
-import { store } from './Redux/store';
 
 export default function App() {
   const RootStack = createStackNavigator<RootStackParams>();
