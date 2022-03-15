@@ -16,7 +16,7 @@ export const TodoList = ({ navigation }: NavigationProps) => {
         <Text style={styles.urgent}>Urgent</Text>
       </View>
       {todoList.map((todo) => (
-        <TodoItem todo={todo} />
+        <TodoItem key={todo.id} todo={todo} />
       ))}
 
       <View style={styles.button}>

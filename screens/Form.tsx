@@ -1,12 +1,20 @@
 import { useState } from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { useAppDispatch } from '../Redux/hooks';
+import { add } from '../Redux/todo/todoSlice';
 import styles from './styles';
 
 export const Form = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [urgent, setUrgent] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const addTask = () => {
+    const todoItem = { id: 1, title, body, urgent };
+    dispatch(add(todoItem));
+  };
 
   return (
     <View style={styles.container}>
@@ -21,7 +29,6 @@ export const Form = () => {
         multiline
       />
       <View style={styles.checkboxContainer}>
-        å
         <BouncyCheckbox
           style={styles.checkbox}
           isChecked={urgent}
@@ -31,7 +38,7 @@ export const Form = () => {
         <Text style={styles.urgentText}>Urgent</Text>
       </View>
       <View style={styles.submit}>
-        <Button title="Submit" color="white" onPress={() => {}} />
+        <Button title="Submit" color="white" onPress={() => addTask()} />
       </View>
     </View>
   );

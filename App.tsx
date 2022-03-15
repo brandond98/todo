@@ -8,7 +8,7 @@ import { store } from './Redux/store';
 
 export default function App() {
   const RootStack = createStackNavigator<RootStackParams>();
-  const [todoList, setTodoList] = useState([]);
+
   return (
     <StoreProvider store={store}>
       <NavigationContainer>

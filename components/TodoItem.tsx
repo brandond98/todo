@@ -1,6 +1,8 @@
 import { FontAwesome } from '@expo/vector-icons';
 import React from 'react';
 import { Text, View } from 'react-native';
+import { useAppDispatch } from '../Redux/hooks';
+import { remove } from '../Redux/todo/todoSlice';
 import { TodoObject } from '../types/TodoObject';
 import styles from './styles';
 
@@ -9,10 +11,11 @@ type TodoItemProps = {
 };
 
 export const TodoItem = ({ todo }: TodoItemProps) => {
+  const dispatch = useAppDispatch();
   return (
     <View style={styles.todoItem}>
       <View style={styles.todoNumberContainer}>
-        <Text style={styles.todoNumber}>{todo.id}</Text>
+        <Text style={styles.todoNumber}>Task {todo.id}</Text>
       </View>
       <View>
         <Text style={styles.title}>{todo.title}</Text>
@@ -23,6 +26,7 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
           name="close"
           color="black"
           backgroundColor="transparent"
+          onPress={() => dispatch(remove(todo))}
         />
       </View>
     </View>
