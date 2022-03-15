@@ -12,7 +12,7 @@ export default function App() {
   return (
     <StoreProvider store={store}>
       <NavigationContainer>
-        <RootStack.Navigator>
+        <RootStack.Navigator screenOptions={{ headerShown: false }}>
           <RootStack.Screen name="home" component={Home} />
           <RootStack.Screen name="form" component={Form} />
         </RootStack.Navigator>

@@ -13,9 +13,24 @@ type TodoItemProps = {
 
 export const TodoItem = ({ todo }: TodoItemProps) => {
   const dispatch = useAppDispatch();
+  const handleDelete = async () => {
+    dispatch(remove(todo));
+    const stored = await AsyncStorage.getItem('todoList');
+    if (stored) {
+      const updated = JSON.parse(stored).filter(
+        (n: TodoObject) => n.id! !== todo.id
+      );
+      await AsyncStorage.setItem('todoList', JSON.stringify(updated));
+    }
+  };
+
+  const todoNumberStyle = todo.urgent
+    ? { ...styles.todoNumberContainer, ...styles.red }
+    : { ...styles.todoNumberContainer };
+
   return (
     <View style={styles.todoItem}>
-      <View style={styles.todoNumberContainer}>
+      <View style={todoNumberStyle}>
         <Text style={styles.todoNumber}>Task {todo.id}</Text>
       </View>
       <View>
@@ -27,16 +42,7 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
           name="close"
           color="black"
           backgroundColor="transparent"
-          onPress={async () => {
-            dispatch(remove(todo));
-            const stored = await AsyncStorage.getItem('todoList');
-            if (stored) {
-              const updated = JSON.parse(stored).filter(
-                (n: TodoObject) => n.id! !== todo.id
-              );
-              await AsyncStorage.setItem('todoList', JSON.stringify(updated));
-            }
-          }}
+          onPress={handleDelete}
         />
       </View>
     </View>

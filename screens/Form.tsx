@@ -2,12 +2,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { Header } from '../components';
 
 import { useAppDispatch, useAppSelector } from '../Redux/hooks';
 import { add } from '../Redux/todo/todoSlice';
+import { NavigationProps } from '../types/RootStackParams';
 import styles from './styles';
 
-export const Form = () => {
+export const Form = ({ navigation }: NavigationProps) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [urgent, setUrgent] = useState(false);
@@ -31,29 +33,39 @@ export const Form = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.add}>Add a task</Text>
-      <Text style={styles.label}>Title</Text>
-      <TextInput style={styles.title} value={title} onChangeText={setTitle} />
-      <Text style={styles.label}>Body</Text>
-      <TextInput
-        style={styles.body}
-        value={body}
-        onChangeText={setBody}
-        multiline
-      />
-      <View style={styles.checkboxContainer}>
-        <BouncyCheckbox
-          style={styles.checkbox}
-          isChecked={urgent}
-          iconStyle={{ borderRadius: 0, borderColor: 'black' }}
-          onPress={() => setUrgent(!urgent)}
+    <>
+      <Header />
+      <View style={styles.back}>
+        <Button
+          title="< Back"
+          color="#616061"
+          onPress={() => navigation.goBack()}
         />
-        <Text style={styles.urgentText}>Urgent</Text>
       </View>
-      <View style={styles.submit}>
-        <Button title="Submit" color="white" onPress={() => addTask()} />
+      <View style={styles.container}>
+        <Text style={styles.add}>Add a task</Text>
+        <Text style={styles.label}>Title</Text>
+        <TextInput style={styles.title} value={title} onChangeText={setTitle} />
+        <Text style={styles.label}>Body</Text>
+        <TextInput
+          style={styles.body}
+          value={body}
+          onChangeText={setBody}
+          multiline
+        />
+        <View style={styles.checkboxContainer}>
+          <BouncyCheckbox
+            style={styles.checkbox}
+            isChecked={urgent}
+            iconStyle={{ borderRadius: 0, borderColor: 'black' }}
+            onPress={() => setUrgent(!urgent)}
+          />
+          <Text style={styles.urgentText}>Urgent</Text>
+        </View>
+        <View style={styles.submit}>
+          <Button title="Submit" color="white" onPress={() => addTask()} />
+        </View>
       </View>
-    </View>
+    </>
   );
 };

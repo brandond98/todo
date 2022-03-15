@@ -1,8 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  mainHeader: {
+    backgroundColor: '#000',
+  },
   container: {
-    marginHorizontal: 30,
+    margin: 30,
   },
   header: {
     fontSize: 25,
@@ -57,9 +60,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     color: 'white',
     borderRadius: 5,
+
+    marginRight: 20,
+  },
+
+  red: {
     borderColor: 'red',
     borderWidth: 1,
-    marginRight: 20,
   },
 
   title: {
@@ -72,6 +79,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     top: 0,
+  },
+
+  logoContainer: {
+    width: '100%',
+    height: 50,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+
+  logo: {
+    flex: 1,
+    resizeMode: 'contain',
   },
 });
 

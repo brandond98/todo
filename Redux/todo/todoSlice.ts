@@ -5,6 +5,7 @@ import { TodoObject } from '../../types/TodoObject';
 
 interface TodoState {
   todoList: TodoObject[];
+  status?: string;
 }
 
 const initialState: TodoState = {
@@ -12,7 +13,7 @@ const initialState: TodoState = {
 };
 
 export const fetchTodos = createAsyncThunk('todos/getTodos', async () => {
-  return AsyncStorage.getItem('todoList').then((res) => JSON.parse(res));
+  return AsyncStorage.getItem('todoList').then((res) => res && JSON.parse(res));
 });
 
 export const todoSlice = createSlice({
@@ -32,10 +33,16 @@ export const todoSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchTodos.pending]: (state, action) => {
+    [fetchTodos.pending as any]: (state: TodoState) => {
       state.status = 'loading';
     },
-    [fetchTodos.fulfilled]: (state, action) => {
+    [fetchTodos.fulfilled as any]: (
+      state: TodoState,
+      action: {
+        payload: any;
+        type: string;
+      }
+    ) => {
       state.status = 'success';
       state.todoList = action.payload;
     },

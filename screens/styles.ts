@@ -50,6 +50,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 50,
   },
+
+  back: {
+    alignItems: 'flex-start',
+  },
 });
 
 export default styles;
