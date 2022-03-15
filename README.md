@@ -10,5 +10,8 @@
 - Run `expo start` 
 - Scan the QR code using the Expo mobile app or choose a simulator
 
+## Testing
+- To test data persists in local storage - shake phone and click reload or close and open Expo app
+
 ## Compromises 
 - Only tested on iPhone as that is the phone I own.
