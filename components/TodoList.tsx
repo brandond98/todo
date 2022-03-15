@@ -1,10 +1,13 @@
-import { View, Text, Button } from 'react-native';
+import { Button, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useAppSelector } from '../Redux/hooks';
 import { NavigationProps } from '../types/RootStackParams';
 import styles from './styles';
 import { TodoItem } from './TodoItem';
 
 export const TodoList = ({ navigation }: NavigationProps) => {
+  const { todoList } = useAppSelector((state) => state.todoList);
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.header}>To Do List</Text>
@@ -12,7 +15,10 @@ export const TodoList = ({ navigation }: NavigationProps) => {
         <View style={styles.colourKey} />
         <Text style={styles.urgent}>Urgent</Text>
       </View>
-      <TodoItem />
+      {todoList.map((todo) => (
+        <TodoItem todo={todo} />
+      ))}
+
       <View style={styles.button}>
         <Button
           title="New Task"

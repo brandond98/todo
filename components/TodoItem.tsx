@@ -1,17 +1,22 @@
-import { View, Text, Button } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import React from 'react';
+import { Text, View } from 'react-native';
+import { TodoObject } from '../types/TodoObject';
 import styles from './styles';
 
-export const TodoItem = () => {
+type TodoItemProps = {
+  todo: TodoObject;
+};
+
+export const TodoItem = ({ todo }: TodoItemProps) => {
   return (
     <View style={styles.todoItem}>
       <View style={styles.todoNumberContainer}>
-        <Text style={styles.todoNumber}>Task 1</Text>
+        <Text style={styles.todoNumber}>{todo.id}</Text>
       </View>
       <View>
-        <Text style={styles.title}>Title 1</Text>
-        <Text>Lorem ispum Loremipsum</Text>
-        <Text>Lorem ispum Loremipsum</Text>
+        <Text style={styles.title}>{todo.title}</Text>
+        <Text>{todo.body}</Text>
       </View>
       <View style={styles.close}>
         <FontAwesome.Button

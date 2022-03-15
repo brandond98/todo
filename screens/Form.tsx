@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Text, TextInput, View, Button } from 'react-native';
+import { Button, Text, TextInput, View } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
 
 export const Form = () => {
@@ -22,6 +21,7 @@ export const Form = () => {
         multiline
       />
       <View style={styles.checkboxContainer}>
+        å
         <BouncyCheckbox
           style={styles.checkbox}
           isChecked={urgent}
@@ -31,7 +31,7 @@ export const Form = () => {
         <Text style={styles.urgentText}>Urgent</Text>
       </View>
       <View style={styles.submit}>
-        <Button title="Submit" color="white" />
+        <Button title="Submit" color="white" onPress={() => {}} />
       </View>
     </View>
   );
