@@ -1,4 +1,5 @@
 import { FontAwesome } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import { Text, View } from 'react-native';
 import { useAppDispatch } from '../Redux/hooks';
@@ -26,7 +27,16 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
           name="close"
           color="black"
           backgroundColor="transparent"
-          onPress={() => dispatch(remove(todo))}
+          onPress={async () => {
+            dispatch(remove(todo));
+            const stored = await AsyncStorage.getItem('todoList');
+            if (stored) {
+              const updated = JSON.parse(stored).filter(
+                (n: TodoObject) => n.id! !== todo.id
+              );
+              await AsyncStorage.setItem('todoList', JSON.stringify(updated));
+            }
+          }}
         />
       </View>
     </View>

@@ -1,12 +1,21 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from 'react';
 import { Button, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../Redux/hooks';
+import { fetchTodos } from '../Redux/todo/todoSlice';
 import { NavigationProps } from '../types/RootStackParams';
 import styles from './styles';
 import { TodoItem } from './TodoItem';
 
 export const TodoList = ({ navigation }: NavigationProps) => {
   const { todoList } = useAppSelector((state) => state.todoList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>

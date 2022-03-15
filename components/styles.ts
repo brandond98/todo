@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     position: 'relative',
+    marginBottom: 10,
   },
 
   todoNumber: {
